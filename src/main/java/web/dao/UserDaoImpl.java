@@ -28,7 +28,8 @@ public class UserDaoImpl implements  UserDao{
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user, Long id) {
+        user.setId(id);
         entityManager.merge(user);
     }
 

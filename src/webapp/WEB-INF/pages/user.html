@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>User</title>
+</head>
+<body>
+
+<h1 style="text-align: center">User info</h1>
+<hr/>
+<div style="font-size: 16px; text-align: center">
+<a th:text="'Your id -  ' + ${user.getId()}">value</a>
+<br/>
+<a th:text="'Your name -  ' + ${user.getName()}">value</a>
+<br/>
+<a th:text="'Your email - ' + ${user.getEmail()}">value</a>
+</div>
+
+
+
+</body>
+</html>

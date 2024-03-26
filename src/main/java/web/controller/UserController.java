@@ -21,11 +21,23 @@ public class UserController {
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("user", userService.getAll());
-        return "users";
+        return "all";
     }
 
-    @PostMapping()
-    public String create(@ModelAttribute("user") User user, Model model) {
+    @GetMapping("/user")
+    public String getUser(@ModelAttribute("user")User user, @RequestParam("id") Long id, Model model){
+        user = userService.findOne(id);
+        model.addAttribute("user", user);
+        return "user";
+
+    }
+    @GetMapping("/new")
+    public String newUser(@ModelAttribute("user") User user) {
+        return "new";
+    }
+
+    @PostMapping("/new")
+    public String createNewUser(@ModelAttribute("user") User user) {
         userService.create(user);
         return "redirect:/people";
     }
@@ -43,8 +55,8 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("user") User user) {
-        userService.update(user);
+    public String update(@ModelAttribute("user") User user, @RequestParam("id") Long id) {
+        userService.update(user, id);
         return "redirect:/people";
     }
 

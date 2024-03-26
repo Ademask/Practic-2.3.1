@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit User</title>
+    <title>New User</title>
 </head>
 <body>
-<h1 style="text-align: center">Edit User</h1>
+
+<h1 style="text-align: center">New User</h1>
 <hr/>
-<form th:method="POST" th:action="@{/people/update?id={id}(id=${user.getId()})}" th:object="${user}" style="text-align: center">
+<form th:method="POST" th:action="@{/people/new}" th:object="${user}" style="text-align: center">
     <div style="margin-bottom: 5px">
         <label for="name">Enter Username: </label>
         <input type="text" th:field="*{name}" id="name"/>
     </div>
     <div style="margin-bottom: 5px">
-        <label for="age">Enter Birthdate: </label>
+        <label for="age">Enter Email: </label>
         <input type="text" th:field="*{email}" id="age"/>
     </div>
-    <input type="submit" value="Update!">
+    <input type="submit" value="Create!">
 </form>
-
 </body>
 </html>
