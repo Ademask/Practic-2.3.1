@@ -8,7 +8,7 @@ import web.model.User;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
     private final UserDaoImpl userDao;
 
@@ -22,22 +22,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findOne(Long id) {
+        return userDao.findOne(id);
+    }
+
+    @Override
+    @Transactional
     public void create(User user) {
         userDao.create(user);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         userDao.delete(id);
     }
 
     @Override
+    @Transactional
     public void update(User user, Long id) {
         userDao.update(user, id);
-    }
-
-    @Override
-    public User findOne(Long id) {
-        return userDao.findOne(id);
     }
 }
