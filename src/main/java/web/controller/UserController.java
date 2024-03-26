@@ -19,20 +19,21 @@ public class UserController {
     }
 
     @GetMapping()
-    public String index(Model model) {
+    public String getListUser(Model model) {
         model.addAttribute("user", userService.getAll());
         return "all";
     }
 
     @GetMapping("/user")
-    public String getUser(@ModelAttribute("user")User user, @RequestParam("id") Long id, Model model){
+    public String getUserPage(@ModelAttribute("user") User user, @RequestParam("id") Long id, Model model) {
         user = userService.findOne(id);
         model.addAttribute("user", user);
         return "user";
 
     }
+
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String getNewUserPage(@ModelAttribute("user") User user) {
         return "new";
     }
 
@@ -43,19 +44,19 @@ public class UserController {
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam("id") Long id) {
+    public String deleteUser(@RequestParam("id") Long id) {
         userService.delete(id);
         return "redirect:/people";
     }
 
     @GetMapping("/edit")
-    public String edit(@RequestParam("id") Long id, Model model) {
+    public String getEditPage(@RequestParam("id") Long id, Model model) {
         model.addAttribute("user", userService.findOne(id));
         return "edit";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("user") User user, @RequestParam("id") Long id) {
+    public String updateUser(@ModelAttribute("user") User user, @RequestParam("id") Long id) {
         userService.update(user, id);
         return "redirect:/people";
     }

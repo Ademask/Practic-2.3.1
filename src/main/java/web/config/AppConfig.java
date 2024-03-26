@@ -36,8 +36,9 @@ public class AppConfig {
         dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;
     }
+
     @Bean
-    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory(){
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(getDataSource());
         em.setPackagesToScan("web.model");
